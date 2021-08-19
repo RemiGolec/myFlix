@@ -52,31 +52,23 @@ app.get('/movies', (req, res) => {
 });
 
 //return a SINGLE MOVIE by title
-app.get('/movies/:title', (req, res) => {
+app.get('/movies/:movieTitle', (req, res) => {
   res.json(topMovies.find((movie) => {
-    return movie.title === req.params.title }));
+    return movie.title === req.params.movieTitle }));
 });
 
-/* 
-code below doesn't work !! why ?? 
-//it's a copy of the code above which works.
-// return data about GENRE 
-
-app.get('/movies/:genre', (req, res) => {
-  res.json(topMovies.find((movie) => {
-    return movie.genre === req.params.genre }));
-});
-*/
-
-//return description about genre
-app.get('/movies/:genre', (req, res) => {
-  res.send('succesfull GET returning all titles tagged in selected genre');
+//return all movies in selected GENRE
+app.get('/movies/genre/:movieGenre', (req, res) => {
+  res.json(topMovies.filter((movie) => {
+    return movie.genre === req.params.movieGenre;
+  }));
 });
 
-//return information about director
+//return selected by name DIRECTOR's BIO 
 app.get('/directors/:name', (req, res) => {
-  res.send('Successful GET returns info about selected director');
+  res.send('Succesful Director\'s Bio Selection' );
 });
+
 
 //allow new user to register
 app.post('/users', (req, res) => {
@@ -89,17 +81,17 @@ app.put('/users/:name', (req, res) => {
 });
 
 //allow user to add movie to their list of favourites
-app.put('/favourites/:title', (req, res) => {
+app.put('/favourites/add/:title', (req, res) => {
   res.send('Successful PUT adds title to favourites list and message about the title being added to the list');
 })
 
 //allow user to remove a movie from list of favourites
-app.delete('/favourites/:title', (req, res) => {
+app.delete('/favourites/remove/:title', (req, res) => {
   res.send('Succesfull DELETE removes title from favourites and shows message about title removed');
 });
 
 //allow existing user to deregister
-app.delete('/users/:name', (req, res) => {
+app.delete('/users/delete/:name', (req, res) => {
   res.send('Succesful DELETE removes user from register and shows message confirming deregistration');
 });
 

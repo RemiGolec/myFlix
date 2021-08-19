@@ -27,13 +27,13 @@ personal information, and create a list of their favorite movies.</p>
     </tr>
     <tr>
       <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
-      <td>/movies/:title</td>
+      <td>/movies/:movieTitle</td>
       <td>GET</td>
       <td>returns json object of selected movie title</td>
     </tr>
     <tr>
         <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-        <td>/genres/:name</td>
+        <td>/movies/genre/:movieGenre</td>
         <td>GET</td>
         <td>returns json objects of all movies included in selected genre</td>
     </tr>
@@ -57,19 +57,19 @@ personal information, and create a list of their favorite movies.</p>
       </tr>
       <tr>
         <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</td>
-        <td>/favourites/:name</td>
+        <td>/favourites/add/:title</td>
         <td>PUT</td>
         <td>adds selected movie title to favourites list</td>
       </tr>
       <tr>
         <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)</td>
-        <td>/favourites/:name</td>
+        <td>/favourites/remove/:title'</td>
         <td>DELETE</td>
         <td>removes selected movie from favourites list</td>
       </tr>
       <tr>
         <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)</td>
-        <td>/users/:name</td>
+        <td>/users/delete/:name</td>
         <td>DELETE</td>
         <td>deletes user from register</td>
       </tr>
