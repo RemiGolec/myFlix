@@ -30,6 +30,6 @@ let User = mongoose.model('User', userSchema);
 module.exports.Movie = Movie;
 module.exports.User = User;
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true });
+
 
 
