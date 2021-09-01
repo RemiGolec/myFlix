@@ -15,45 +15,6 @@ app.use(express.static('public'));
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true });
 
-let topMovies = [
-  {
-    genre: 'art',
-    title: 'MOVABLE TYPE',
-    director: 'Pam'
-    
-  },
-  {
-    title: 'ROCKWELL',
-    director: 'Tom',
-    genre: 'thriller'
-  },
-  {
-    title: 'OUT THERE',
-    director: 'Goryl',
-    genre: 'sf'
-  },
-  {
-    title: 'THE FUNDAMENTALS OF CREATIVE DESIGN',
-    director: 'Pam',
-    genre: 'comedy'
-  },
-  {
-    title: 'IDIOMS',
-    director: 'Goryl',
-    genre: 'sf'
-  },
-  {
-    title: 'STEALING SHEEP',
-    director: 'Pam',
-    genre: 'comedy'
-  },
-  {
-    title: 'PHOSFATE INLINE',
-    director: 'Goryl',
-    genre: 'sf'
-  },
-];
-
 // return a LIST of ALL MOVIES
 app.get('/movies', (req, res) => {
     res.json(topMovies);
