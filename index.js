@@ -1,14 +1,19 @@
 const express = require('express'),
       morgan = require('morgan'),
+      mongoose = require('mongoose'),
+      Models = require('./models.js'),
       bodyParser = require('body-parser');
 
-const app = express();
+const app = express(),
+      Movies = Models.Movie,
+      Users = Models.User;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('common'));
 app.use(express.static('public'));
 
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true });
 
 let topMovies = [
   {
