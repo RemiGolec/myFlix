@@ -99,7 +99,7 @@ app.get('/users/:Username', (req, res) => {
       console.error(err);
       res.status(500).send('Error: ' + err);
     });
-});
+})
 
 //allow new user to register
 app.post('/users', (req, res) => {
