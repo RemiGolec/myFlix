@@ -1,8 +1,11 @@
 const express = require('express'),
-      morgan = require('morgan');
+      morgan = require('morgan'),
+      bodyParser = require('body-parser');
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('common'));
 app.use(express.static('public'));
 
@@ -72,8 +75,25 @@ app.get('/directors/:name', (req, res) => {
 
 //allow new user to register
 app.post('/users', (req, res) => {
-  res.send('Successful POST returns message "New User added with ID number assigned"'); 
-});
+
+  Users.findOne({ Username: req.body.Username }).then((user) => {
+    if (user) {
+      return res.status(400).send(req.body.Username + ' already exists ');
+    } else {
+      Users.create({
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      })
+      .then((user) => {res.status(201).json(user) })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send('Error: ' + error);
+      });
+    }
+  })
+})
 
 //allow user to update their details
 app.put('/users/:name', (req, res) => {
