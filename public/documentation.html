@@ -12,8 +12,8 @@ movies, directors, and genres.</P>
 <p>* Users will be able to sign up, update their
 personal information, and create a list of their favorite movies.</p>
 
-<table style="width:100%">
-    <tr>
+<table style="width:100%" frame="box">
+    <tr style="background-color: lightblue;">
       <th>REQUEST</th>
       <th>URL</th>
       <th>Http Method</th>
@@ -25,21 +25,21 @@ personal information, and create a list of their favorite movies.</p>
       <td>GET</td>
       <td>returns json objects of all movies</td>
     </tr>
-    <tr>
+    <tr style="background-color:bisque;">
       <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</td>
-      <td>/movies/:movieTitle</td>
+      <td>/movies/:Title</td>
       <td>GET</td>
       <td>returns json object of selected movie title</td>
     </tr>
     <tr>
         <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
-        <td>/movies/genre/:movieGenre</td>
+        <td>/genre/:Name</td>
         <td>GET</td>
-        <td>returns json objects of all movies included in selected genre</td>
+        <td>returns json object of selected genre</td>
     </tr>
-    <tr>
+    <tr style="background-color: bisque;">
         <td>Return data about a director (bio, birth year, death year) by name</td>
-        <td>/directors/:name</td>
+        <td>/directors/:Name</td>
         <td>GET</td>
         <td>returns json array containing bio/dob/dod keys and values</td>
     </tr> 
@@ -47,31 +47,55 @@ personal information, and create a list of their favorite movies.</p>
         <td>Allow new users to register</td>
         <td>/users</td>
         <td>POST</td>
-        <td>adds a new user to register</td>
+        <td>adds a new user json object created in the request body to users register.</br>
+          exp. format:</br>  
+          {</br>
+          "Username" : "Big Foot",
+          "Password" : "Himalaya",
+          "Email" : "Foooooooooot@gmail.com",
+          "FavouriteMovies" : "",
+          "Birthday" : "1974-12-05"</br>
+          } 
+        </td>
       </tr>
-      <tr>
-        <td>Allow users to update their user info (username)</td>
-        <td>/users/:name</td>
+      <tr style="background-color: bisque;">
+        <td>Allow users to update their user info</td>
+        <td>/users/:Username</td>
         <td>PUT</td>
-        <td>updates user data</td>
+        <td>updates user data. Update user json object in request body.</br>
+          exp. format: </br>
+          {</br>
+            "Username": "Mr T",
+            "Password": "No Fly",
+            "Email": "TheATeam@gmail.com",
+            "Birthday": "1984-10-20"</br>
+          }
+        </td>
       </tr>
       <tr>
-        <td>Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later)</td>
-        <td>/favourites/add/:title</td>
-        <td>PUT</td>
-        <td>adds selected movie title to favourites list</td>
+        <td>Allow users to add a movie by MovieID to their list of favorites.</td>
+        <td>/users/:Username/movies/:MovieID</td>
+        <td>POST</td>
+        <td>adds selected movie title to favourites list.</br>
+          Shows updated user json object, including FavouriteMovies list by id.</br>
+          Movies already on the list will not be added due to usage of $addToSet 
+        </td>
       </tr>
-      <tr>
-        <td>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed—more on this later)</td>
-        <td>/favourites/remove/:title'</td>
+      <tr style="background-color: bisque;">
+        <td>Allow users to remove a movie by MovieID from their list of favorites</td>
+        <td>/users/:Username/movies/:MovieID</td>
         <td>DELETE</td>
-        <td>removes selected movie from favourites list</td>
+        <td>removes selected movie from favourites list</br>
+          Shows updated user json object, including FavouriteMovies list by id.
+        </td>
       </tr>
       <tr>
-        <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)</td>
-        <td>/users/delete/:name</td>
+        <td>Allow existing users to deregister.</td>
+        <td>/users/:Username</td>
         <td>DELETE</td>
-        <td>deletes user from register</td>
+        <td>deletes user from register by Username</br>
+        If successful shows "Username was deleted" otherwise "Username was not found"</br>
+        </td>
       </tr>
       
   </table>
