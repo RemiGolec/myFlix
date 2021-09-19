@@ -233,9 +233,7 @@ app.delete('/users/:Username/movies/:MovieID',
      console.error(err);
      res.status(500).send('Error: ' + err);
    } else {
-     res.json(updatedUser),
-     send('The ' + MovieID + ' movie has been added to ' 
-     + Username + '\'s favourits');
+     res.json(updatedUser);
    }
  });
 });
