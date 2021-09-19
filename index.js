@@ -35,7 +35,7 @@ app.use(cors({
   }
 }));
 
-// ------- LOCAL HOST CONNECTION STRING for testing purposes ------ //
+// ------- LOCALHOST CONNECTION STRING for testing purposes ------ //
 /*
 mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewUrlParser: true, useUnifiedTopology: true });
 */
