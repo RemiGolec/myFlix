@@ -77,7 +77,7 @@ app.get('/movies/:Title',
     });
 });
 
-// -------  return all movies in selected GENRE
+// -------  get GENRE by name
 app.get('/genre/:Name/',
       passport.authenticate('jwt', { session: false }),
       (req, res) => {
@@ -215,6 +215,7 @@ app.post('/users/:Username/movies/:MovieID',
       res.status(500).send('Error: ' + err);
     } else {
       res.json(updatedUser);
+      return res.status(201).send(req.body.Username + ' favourite movies list has been updated. ');
     }
   });
 });
