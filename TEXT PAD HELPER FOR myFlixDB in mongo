@@ -1,0 +1,208 @@
+TEXT PAD HELPER FOR myFlixDB in mongo
+
+*************************************
+
+ADD 10 MOVIES
+
+var movie1 = {
+    Title: "Do the Right Thing",
+    Description: "The story explores a Brooklyn neighborhood\'s simmering racial tension between its African American and Italian American residents, which culminates in tragedy and violence on a hot summer day.",
+    Director: {
+        Name: "Spike Lee",
+        Bio: "Shelton Jackson \"Spike\" Lee is a preeminent American film director, producer, screenwriter, actor, and professor.",
+        BirthDate: "1957-03-20"
+    },
+    Genre: {
+        Name: "drama",
+        Description: "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0097216/mediaviewer/rm1748028416/",
+    Featured: true
+}
+
+var movie2 = {
+    Title: "25th Hour",
+    Description: "Adapted by David Benioff from his own novel The 25th Hour, it tells the story of a man\'s last 24 hours of freedom as he prepares to go to prison for seven years for dealing drugs.",
+    Director: {
+        Name: "Spike Lee",
+        Bio: "Shelton Jackson \"Spike\" Lee is an American film director, producer, screenwriter, actor, and professor.",
+        BirthDate: "1957-03-20"
+    },
+    Genre: {
+        Name: "drama",
+        Description: "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0307901/mediaviewer/rm2297051392/",
+    Featured: true
+}
+
+var movie3 = {
+    Title: "BlacKkKlansman",
+    Description: "BlacKkKlansman is a 2018 American biographical crime comedy film directed by Spike Lee and written by Charlie Wachtel, David Rabinowitz, Kevin Willmott and Lee, based on the 2014 memoir Black Klansman by Ron Stallworth.",
+    Director: {
+        Name: "Spike Lee",
+        Bio: "Shelton Jackson \"Spike\" Lee is a preeminent American film director, producer, screenwriter, actor, and professor.",
+        BirthDate: "1957-03-20"
+    },
+    Genre: {
+        Name: "crime-comedy",
+        Description: "Crime comedy films are a hybrid of the crime film and the comedy that play with the conventions of the crime film and may introduce aspects of dark humor. Generally, they feature dim-witted criminals or crime sprees that are bumblingly executed or are presented in a lighthearted matter."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0307901/mediaviewer/rm2297051392/",
+    Featured: true
+}
+
+var movie4 = {
+    Title: "Down by Law",
+    Description: "The film centers on the arrest, incarceration, and escape from jail of three men. It discards jailbreak film conventions by focusing on the interaction between the convicts rather than on the mechanics of the escape. A key element in the film is Robby Müller\'s slow-moving camerawork, which captures the architecture of New Orleans and the Louisiana bayou to which the cellmates escape.",
+    Director: {
+        Name: "Jim Jarmusch",
+        Bio: "James Robert Jarmusch is an American film director, screenwriter, actor, producer, editor, and composer.",
+        BirthDate: "1953-01-22"
+    },
+    Genre: {
+        Name: "crime-comedy",
+        Description: "Crime comedy films are a hybrid of the crime film and the comedy that play with the conventions of the crime film and may introduce aspects of dark humor. Generally, they feature dim-witted criminals or crime sprees that are bumblingly executed or are presented in a lighthearted matter."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0090967/mediaviewer/rm3042312704/",
+    Featured: true
+}
+
+var movie5 = {
+    Title: "Dead Man",
+    Description: "The film, dubbed a \"Psychedelic Western\" by its director, includes twisted and surreal elements of the Western genre. The film is shot entirely in black-and-white. Neil Young composed the guitar-dominated soundtrack with portions he improvised while watching the movie footage. It has been considered by many to be a premier postmodern Western.",
+    Director: {
+        Name: "Jim Jarmusch",
+        Bio: "James Robert Jarmusch is an American film director, screenwriter, actor, producer, editor, and composer.",
+        BirthDate: "1953-01-22"
+    },
+    Genre: {
+        Name: "drama",
+        Description: "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0112817/mediaviewer/rm2799900160/",
+    Featured: true
+}
+
+var movie6 = {
+    Title: "The Dead Don\'t Die",
+    Description: "2019 American comedy horror film written and directed by Jim Jarmusch. It features an ensemble cast including Bill Murray, Adam Driver, Chloë Sevigny, Steve Buscemi, Tilda Swinton, Tom Waits, Danny Glover, Caleb Landry Jones, Rosie Perez, Iggy Pop, Carol Kane, and Selena Gomez and follows a small town\'s police force as they combat a sudden zombie invasion.",
+    Director: {
+        Name: "Jim Jarmusch",
+        Bio: "James Robert Jarmusch is an American film director, screenwriter, actor, producer, editor, and composer.",
+        BirthDate: "1953-01-22"
+    },
+    Genre: {
+        Name: "horror-comedy",
+        Description: "Comedy horror, also known as horror comedy, is a literary, television and film genre that combines elements of comedy and horror fiction. Comedy horror has been described as able to be categorised under three types: black comedy, parody and spoof. It often crosses over with the black comedy genre. Comedy horror can also parody or subtly spoof horror clichés as its main source of humour or use those elements to take a story in a different direction."
+    },
+    ImagePath: "https://www.imdb.com/title/tt8695030/mediaviewer/rm2354617089/",
+    Featured: false
+}
+
+var movie7 = {
+    Title: "Broken Flowers",
+    Description: "The film focuses on an ageing \"Don Juan\" who embarks on a cross-country journey to track down four of his former lovers after receiving an anonymous letter stating that he has a son.",
+    Director: {
+        Name: "Jim Jarmusch",
+        Bio: "James Robert Jarmusch is an American film director, screenwriter, actor, producer, editor, and composer.",
+        BirthDate: "1953-01-22"
+    },
+    Genre: {
+        Name: "comedy-drama",
+        Description: "A serious story that contains some characters or scenes inherently humorous to the audience."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0412019/mediaviewer/rm2233572608/",
+    Featured: true
+}
+
+var movie8 = {
+    Title: "All About My Mother",
+    Description: "The plot originates in Almodóvar\'s earlier film The Flower of My Secret (1995) which shows student doctors being trained in how to persuade grieving relatives to allow organs to be used for transplant, focusing on the mother of a teenager killed in a road accident.",
+    Director: {
+        Name: "Pedro Almodóvar",
+        Bio: "Pedro Almodóvar Caballero (Spanish pronunciation: [ˈpeðɾo almoˈðoβaɾ kaβaˈʝeɾo]; is a Spanish film director, screenwriter, producer, and former actor",
+        BirthDate: "1949-09-25"
+    },
+    Genre: {
+        Name: "comedy-drama",
+        Description: "A serious story that contains some characters or scenes inherently humorous to the audience."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0185125/mediaviewer/rm3202227712/",
+    Featured: false
+}
+
+var movie9 = {
+    Title: "Bad Education",
+    Description: "The film focuses on two reunited childhood friends and lovers caught up in a stylised murder mystery. Along with metafiction, sexual abuse by Catholic priests, transsexuality and drug use are also important themes and devices in the plot.",
+    Director: {
+        Name: "Pedro Almodóvar",
+        Bio: "Pedro Almodóvar Caballero (Spanish pronunciation: [ˈpeðɾo almoˈðoβaɾ kaβaˈʝeɾo]; is a Spanish film director, screenwriter, producer, and former actor",
+        BirthDate: "1949-09-25"
+    },
+    Genre: {
+        Name: "drama",
+        Description: "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0275491/mediaviewer/rm1328221184/",
+    Featured: true
+}
+
+var movie10 = {
+    Title: "Volver",
+    Description: "After her death, a mother returns to her home town in order to fix the situations she couldn\'t resolve during her life.",
+    Director: {
+        Name: "Pedro Almodóvar",
+        Bio: "Pedro Almodóvar Caballero (Spanish pronunciation: [ˈpeðɾo almoˈðoβaɾ kaβaˈʝeɾo]; is a Spanish film director, screenwriter, producer, and former actor",
+        BirthDate: "1949-09-25"
+    },
+    Genre: {
+        Name: "comedy-drama",
+        Description: "A serious story that contains some characters or scenes inherently humorous to the audience."
+    },
+    ImagePath: "https://www.imdb.com/title/tt0441909/mediaviewer/rm4021851905/",
+    Featured: true
+}
+
+
+*************  5 USERS *******************
+
+var user1 = {
+    Name: "John Doe",
+    Password:"eatingFish21",
+    Email: "johndoe21@gmail.com",
+    Birthday: new Date("1999-01-25"),
+    FavouriteMovies: ["6127fa1f5cd1d9f3439c9b84", "6127fa765cd1d9f3439c9b85", "6127fae25cd1d9f3439c9b88"]
+}
+
+var user2 = {
+    Name: "Helmut Kohl",
+    Password:"VV1973",
+    Email: "hkohl@hotmail.com",
+    Birthday: new Date("1973-12-24"),
+    FavouriteMovies: ["6127fccd5cd1d9f3439c9b89", "6127fe145cd1d9f3439c9b8a","6127ffec5cd1d9f3439c9b8c" ]
+}
+
+var user3 = {
+    Name: "Tomek Gawlowski",
+    Password:"dopepope",
+    Email: "tomek@gmail.com",
+    Birthday: new Date("1980-06-21"),
+    FavouriteMovies: ["612800c15cd1d9f3439c9b8d", "6127fae25cd1d9f3439c9b88", "6127fa835cd1d9f3439c9b86" ]
+}
+
+var user4 = {
+    Name: "Les Paul",
+    Password:"shredder",
+    Email: "lspSpecial@gmail.com",
+    Birthday: new Date("1954-10-05"),
+    FavouriteMovies: ["6127fae25cd1d9f3439c9b88", "6127fa765cd1d9f3439c9b85","6127f5ea5cd1d9f3439c9b83" ]
+}
+
+var user5 = {
+    Name: "Mr T",
+    Password:"noFly",
+    Email: "Ateam@gmail.com",
+    Birthday: new Date("1984-03-31"),
+    FavouriteMovies: ["612800c15cd1d9f3439c9b8d", "6127fae25cd1d9f3439c9b88", "6127fe145cd1d9f3439c9b8a"]
+}
