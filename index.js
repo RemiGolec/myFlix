@@ -25,18 +25,18 @@ let allowedOrigins =
     'http://localhost:1234',
     'https://dashboard.heroku.com/apps/morning-badlands-52426',
   ];
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.indexOf(origin) === -1) {
-//       let message = 'The CORS policy for this application doesn’t allow access from origin '
-//         + origin;
-//       return callback(new Error(message), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
-app.use(cors());
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      let message = 'The CORS policy for this application doesn’t allow access from origin '
+        + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 // ------- LOCALHOST CONNECTION STRING for testing purposes ------ //
 
