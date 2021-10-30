@@ -24,7 +24,7 @@ let allowedOrigins =
     'http://testsite.com',
     'http://localhost:1234',
     'https://dashboard.heroku.com/apps/morning-badlands-52426',
-    'https://morning-badlands-52426.herokuapp.com/movies',
+    'https://morning-badlands-52426.herokuapp.com',
   ];
 
 app.use(cors({
