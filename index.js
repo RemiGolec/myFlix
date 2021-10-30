@@ -24,6 +24,7 @@ let allowedOrigins =
     'http://testsite.com',
     'http://localhost:1234',
     'https://dashboard.heroku.com/apps/morning-badlands-52426',
+    'https://morning-badlands-52426.herokuapp.com',
   ];
 
 app.use(cors({
@@ -53,8 +54,8 @@ require('./passport');
 
 // -------  return a LIST of ALL MOVIES
 app.get('/movies',
-  // ------  temporarily removed for easy access movies from myFlix-client 
-  // passport.authenticate('jwt', { session: false }),
+
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find()
       .then((movies) => {
