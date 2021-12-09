@@ -27,17 +27,23 @@ let allowedOrigins =
     'https://morning-badlands-52426.herokuapp.com',
   ];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      let message = 'The CORS policy for this application doesn’t allow access from origin '
-        + origin;
-      return callback(new Error(message), false);
-    }
-    return callback(null, true);
-  }
-}));
+app.use(cors())
+
+// --------  This code on line 35-45 isctemporarily commented out
+// --------  CORS was throwing errors after adding movie to favourites
+// --------  It wasn't allowing authorisation of user at all
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin) return callback(null, true);
+//     if (allowedOrigins.indexOf(origin) === -1) {
+//       let message = 'The CORS policy for this application doesn’t allow access from origin '
+//         + origin;
+//       return callback(new Error(message), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
 
 // ------- LOCALHOST CONNECTION STRING for testing purposes ------ //
 
