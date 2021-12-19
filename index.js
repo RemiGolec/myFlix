@@ -27,7 +27,7 @@ let allowedOrigins =
     'https://morning-badlands-52426.herokuapp.com',
   ];
 
-app.use(cors())
+app.use(cors());
 
 // --------  This code on line 35-45 isctemporarily commented out
 // --------  CORS was throwing errors after adding movie to favourites
@@ -228,7 +228,6 @@ app.post('/users/:Username/movies/:MovieID',
           res.status(500).send('Error: ' + err);
         } else {
           res.json(updatedUser);
-          return res.status(201).send(req.body.Username + ' favourite movies list has been updated. ');
         }
       });
   });
