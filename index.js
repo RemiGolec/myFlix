@@ -25,6 +25,7 @@ let allowedOrigins =
     'http://localhost:1234',
     'https://dashboard.heroku.com/apps/morning-badlands-52426',
     'https://morning-badlands-52426.herokuapp.com',
+    'https://remiflix.netlify.app/'
   ];
 
 app.use(cors());
