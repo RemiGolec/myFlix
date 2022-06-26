@@ -3,6 +3,7 @@ const express = require('express'),
   mongoose = require('mongoose'),
   Models = require('./models.js'),
   bodyParser = require('body-parser'),
+  // requires express validator to validate user input on the server side
   { check, validationResult } = require('express-validator');
 
 const app = express(),
@@ -53,14 +54,24 @@ app.use(cors());
 
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let auth = require('./auth')(app);//This ensures that Express is available in “auth.js” file as well.
+//This ensures that Express is available in “auth.js” file as well.
+let auth = require('./auth')(app);
 
+// requires the Passport module and imports passport.js
 const passport = require('passport');
 require('./passport');
 
 
 
 // -------  return a LIST of ALL MOVIES
+// READ route located at endpoint '/movies', returning .json object with all movies
+/**
+ * /movies end-point
+ * method: get
+ * get all movies
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.get('/movies',
 
   passport.authenticate('jwt', { session: false }),
@@ -77,6 +88,13 @@ app.get('/movies',
 
 
 // --------  return a SINGLE MOVIE by title
+/**
+ * /movies/:Title end-point
+ * method: gt
+ * movies by title
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.get('/movies/:Title',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -91,6 +109,13 @@ app.get('/movies/:Title',
   });
 
 // -------  get GENRE by name
+/**
+ * /genre end-point
+ * method: get
+ * get description of a genre by name
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.get('/genre/:Name/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -105,6 +130,13 @@ app.get('/genre/:Name/',
   });
 
 // -------  return selected by name DIRECTOR's BIO 
+/**
+ * /directors end-point
+ * method: get
+ * director by name
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.get('/directors/:Name',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -118,7 +150,14 @@ app.get('/directors/:Name',
       });
   });
 
-// -------  read data about all users
+// -------  gets all users
+/**
+ * /users end-point
+ * method: get
+ * get all user profiles
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.get('/users',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -132,7 +171,14 @@ app.get('/users',
       });
   });
 
-// -------  read data of a user by username
+// -------  gets a user by username
+/**
+ * /users end-point
+ * method: get
+ * get user by username
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.get('/users/:Username',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -147,7 +193,23 @@ app.get('/users/:Username',
   })
 
 
-// ------  allow new user to register
+// ------  ADD a new user
+/* We’ll expect JSON in this format
+{
+  ID: Integer,
+  Username: String,
+  Password: String,
+  Email: String,
+  Birthday: Date
+}*/
+/**
+ * /users end-point
+ * method: post
+ * register user profile
+ * expects Username, Password, Email, Birthday
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.post('/users',
   check('Username', 'Username min 5 char is required').isLength({ min: 5 }),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlpha('en-US', { ignore: ' ' }),
@@ -162,6 +224,7 @@ app.post('/users',
       return res.status(422).json({ errors: errors.array() });
     }
 
+    // hashes any password enteres by the iser when registering before storing it in the MongoDB database
     let hashedPassword = Users.hashPassword(req.body.Password);
 
     Users.findOne({ Username: req.body.Username })
@@ -188,7 +251,14 @@ app.post('/users',
       });
   });
 
-// -------  allow user to update their details
+// -------  allows user to update their details
+/**
+ * /users/ end-point
+ * method: put
+ * update user's profile
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.put('/users/:Username',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -214,7 +284,14 @@ app.put('/users/:Username',
       });
   });
 
-// -------- allow user to add movie to their list of favourites
+// -------- add a movie to user's list of favourites
+/**
+ * /users end-point
+ * method: post
+ * add movie to user's favorites
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.post('/users/:Username/movies/:MovieID',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -235,7 +312,14 @@ app.post('/users/:Username/movies/:MovieID',
   });
 
 
-// -------  allow user to remove a movie from their list of favourites
+// -------  remove a movie from the user's list of favourites
+/**
+ * /users end-point
+ * method: delete
+ * delete a movie from user's favorites
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.delete('/users/:Username/movies/:MovieID',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -253,7 +337,14 @@ app.delete('/users/:Username/movies/:MovieID',
       });
   });
 
-// ------- allow existing user to deregister by removing data
+// ------- DELETE current USER by removing data
+/**
+ * /users end-point
+ * method: delete
+ * delete user's profile
+ * @param {express.request} req
+ * @param {express.response} res
+ */
 app.delete('/users/:Username',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
@@ -275,11 +366,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to my app!');
 });
 
+// Error-handling middleware function that will log all application-level errors to the terminal
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
 
+// Server listens to Port 8080. For HTTP Port 80 is the default Port
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
   console.log('This app is listening on port ' + port);
